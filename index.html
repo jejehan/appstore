@@ -18,20 +18,23 @@
 	<script type="text/javascript" src="js/lib/foundation/foundation.orbit.js"></script>
 	<script type="text/javascript" src="js/lib/foundation/foundation.section.js"></script>
 
+	<script type="text/javascript" src="js/models/CategoryItem.js"></script>
 	<script type="text/javascript" src="js/models/ProductItemDetails.js"></script>
 	<script type="text/javascript" src="js/models/ProductItem.js"></script>
 	<script type="text/javascript" src="js/models/HomeSlider.js"></script>
 	
+	<script type="text/javascript" src="js/collections/CategoryList.js"></script>
 	<script type="text/javascript" src="js/collections/ProductDetailList.js"></script>
 	<script type="text/javascript" src="js/collections/ProductList.js"></script>
 	<script type="text/javascript" src="js/collections/HomeSliderList.js"></script>
 	
-	
+	<script type="text/javascript" src="js/views/Category.js"></script>
 	<script type="text/javascript" src="js/views/ProductDetails.js"></script>
 	<script type="text/javascript" src="js/views/Product.js"></script>
 	<script type="text/javascript" src="js/views/HomeSlider.js"></script>
 	<script type="text/javascript" src="js/views/Home.js"></script>
 	
+	<script type="text/javascript" src="js/presenter/CategoryPresenter.js"></script>
 	<script type="text/javascript" src="js/presenter/HomeSliderPresenter.js"></script>
 	<script type="text/javascript" src="js/presenter/ProductPresenter.js"></script>
 	
@@ -57,28 +60,8 @@
 <body>
 	<div class="snap-drawers">
 		<div class="snap-drawer snap-drawer-left" id="left-drawer">
-			<ul class="list">
-             <li><a href="#">HOME</a> <span class="chevron"></span></li>
-			  <li>List item 2 <span class="chevron"></span></li>
-			  <li>List item 3 <span class="chevron"></span></li>
-			  <li>List item 4 <span class="chevron"></span></li>
-			  <li>List item 5 <span class="chevron"></span></li>
-			  <li>List item 6 <span class="chevron"></span></li>
-			  <li>List item 7 <span class="chevron"></span></li>
-			  <li>List item 8 <span class="chevron"></span></li>
-			  <li>List item 9 <span class="chevron"></span></li>
-			  <li>List item 10 <span class="chevron"></span></li>
-			  <li>List item 1 <span class="chevron"></span></li>
-			  <li>List item 12 <span class="chevron"></span></li>
-			  <li>List item 13 <span class="chevron"></span></li>
-			  <li>List item 14 <span class="chevron"></span></li>
-			  <li>List item 15 <span class="chevron"></span></li>
-			  <li>List item 16 <span class="chevron"></span></li>
-			  <li>List item 17 <span class="chevron"></span></li>
-			  <li>List item 18 <span class="chevron"></span></li>
-			  <li>List item 19 <span class="chevron"></span></li>
-			  <li>List item 20 <span class="chevron"></span></li>
-			</ul>
+			<div id="scroller-left">
+			</div>
 		</div>
 		<div class="snap-drawer snap-drawer-right" id="right-drawer">
 			<div class="row full-width">

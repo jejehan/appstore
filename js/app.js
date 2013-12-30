@@ -20,6 +20,12 @@ var AppRouter = Backbone.Router.extend({
 			collection:this.productCollection
 		});
 		
+		this.categoryCollection = new CategoryCollection();
+		this.categoryPresenter = new CategoryPresenter({
+			collection:this.categoryCollection
+		});
+		
+		this.categoryCollection.fetch()
 	},
 
 	home: function () {
