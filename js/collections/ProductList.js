@@ -1,5 +1,5 @@
 var ProductCollection = Backbone.Collection.extend({
-	url: "http://toptotoe-boutique.com/jeapi/Product",
+	url: "http://localhost:8080/Project/makanjaapi/source/HomeProduct.php",
 	model: ProductItem,
 	comparator: function(item) {
 		//sort by id

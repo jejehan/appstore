@@ -23,15 +23,9 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	home: function () {
+		$("#scroller").empty();
 		$.when(
-			this.homeSliderCollection.fetch().done(
-				function (){
-					$(document).foundation("orbit", { 
-						bullets: false,
-					});
-				}
-			) 
-			,this.productCollection.fetch()
+			this.productCollection.fetch()
 		).then(function(){
 			myScroll = new iScroll('wrapper',{
 				 hideScrollbar: true,
