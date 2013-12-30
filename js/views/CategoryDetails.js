@@ -60,7 +60,6 @@ var CategoryDetailsView = Backbone.View.extend({
 		'</div>'
 	),
 	initialize: function () {
-			
 		 this.render();
     },
 	render: function () {
@@ -69,11 +68,20 @@ var CategoryDetailsView = Backbone.View.extend({
 	},
 	events: {
 		"dblclick #home-product" : "masking",
+		'scroll #wrapper': 'checkScroll'
 	},
 	masking: function(){
 		console.log("pindah ke details")
 		if (!myScroll.moved){
-			app.navigate('CategoryDetails/' + this.model.id, { trigger: true });
+			app.navigate('products/' + this.model.id, { trigger: true });
 		}
-	}
+	},
+	checkScroll: function () {
+      console.log("scroll")
+	  //var triggerPoint = 100; // 100px from the bottom
+      //  if( !this.isLoading && this.el.scrollTop + this.el.clientHeight + triggerPoint > this.el.scrollHeight ) {
+      //    this.twitterCollection.page += 1; // Load next page
+      //    this.loadResults();
+      //  }
+    }
 });

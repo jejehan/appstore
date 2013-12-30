@@ -5,7 +5,7 @@ var ProductDetailCollection = Backbone.Collection.extend({
 		console.log(this.id)
 	},
 	url: function() {
-		return 'http://toptotoe-boutique.com/jeapi/Product/' + this.id;
+		return 'http://localhost:8080/Project/makanjaapi/source/Product.php?ProdId=' + this.id;
 	},
 	model: ProductItem,
 	comparator: function(item) {
