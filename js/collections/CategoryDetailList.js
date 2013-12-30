@@ -5,7 +5,7 @@ var CategoryDetailCollection = Backbone.Collection.extend({
 		console.log(this.id)
 	},
 	url: function() {
-		return 'http://localhost:8080/Project/makanjaapi/source/CategoryProduct.php?cid=' + this.id;
+		return 'http://toptotoe-boutique.com/jeapi/CategoryProduct.php?cid=' + this.id;
 	},
 	model: CategoryItem,
 	comparator: function(item) {
