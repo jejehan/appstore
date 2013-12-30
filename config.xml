@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns       = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/3.0"
+        id          = "org.appstoreje.appstoreje"
+        versionCode = "1"
+        version     = "0.0.1">
+ 
+    <name>appstore</name>
+ 
+    <description>
+        appstore
+    </description>
+ 
+    <author href="http://zeihanaulia.com" email="seventpoint@gmail.com">
+      appstore
+    </author>
+
+    <feature name="http://api.phonegap.com/3.0/media"/>
+    <feature name="http://api.phonegap.com/3.0/network"/>
+    <feature name="http://api.phonegap.com/3.0/notification"/>
+ 
+</widget>
