@@ -47,7 +47,7 @@ var AppRouter = Backbone.Router.extend({
 		var cProductDetails = new ProductDetailCollection([],{id:id});
 		cProductDetails.fetch({
 			success: function(collection){ 
-				myScroll.destroy();
+				//myScroll.destroy();
 				$("#scroller").html(new ProductDetailView({model: collection.at(0).attributes}).render().el);
 			}
 		});
@@ -58,7 +58,7 @@ var AppRouter = Backbone.Router.extend({
 		var cCategoryDetails = new CategoryDetailCollection([],{id:id});
 		cCategoryDetails.fetch({
 			success: function(collection){ 
-				myScroll.refresh();
+				//myScroll.refresh();
 				$('#scroller').append('<div class="row full-width" id="display-data"></div>').el;
 				collection.each(function(item){
 					$('#display-data').append(new CategoryDetailsView({
@@ -74,11 +74,11 @@ var AppRouter = Backbone.Router.extend({
 				}
 				$('#display-data').append(add);	
 				
-				myScroll.options.onScrollEnd = function(){
-					if(Math.abs(this.maxScrollY) - Math.abs(this.y) < 10){
-						console.log("scroller done")
-					}
-				};
+				//myScroll.options.onScrollEnd = function(){
+				//	if(Math.abs(this.maxScrollY) - Math.abs(this.y) < 10){
+				//		console.log("scroller done")
+				//	}
+				//};
 			}
 		});
 	}
