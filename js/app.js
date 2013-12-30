@@ -5,7 +5,9 @@
 var AppRouter = Backbone.Router.extend({
 	routes: {
 		"": "home",
-		"products/:id": "productDetails"
+		"products/:id": "productDetails",
+		"Categorys/:id": "categoryDetails"
+		
 	},
 
 	initialize: function  () {	
@@ -42,12 +44,36 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 	productDetails: function (id) {
-		var mdl = new ProductDetailCollection([],{id:id});
-		mdl.fetch({
+		var cProductDetails = new ProductDetailCollection([],{id:id});
+		cProductDetails.fetch({
 			success: function(collection){ 
 				$("#scroller").html(new ProductDetailView({model: collection.at(0).attributes}).render().el);
 			}
 		});
+	},
+	categoryDetails: function (id) {
+		$("#scroller").empty();
+		var cCategoryDetails = new CategoryDetailCollection([],{id:id});
+		cCategoryDetails.fetch({
+			success: function(collection){ 
+				console.log(collection)
+				$('#scroller').append('<div class="row full-width" id="display-data"></div>').el;
+				collection.each(function(item){
+					$('#display-data').append(new CategoryDetailsView({
+						model: item.toJSON()
+					}).el);
+				});
+				
+				if(collection.length%2==1){
+					add = 	'<div class="small-6 large-6 columns" id="home-product" style="background:#A7DBD8;">'+
+							'<div id="image" align="center"></div>' +
+							'</div> '
+				}else{
+					add = ''
+				}
+				$('#display-data').append(add);	
+						}
+				});
 	}
 });
 

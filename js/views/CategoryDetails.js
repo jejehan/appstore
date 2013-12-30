@@ -49,17 +49,18 @@ Handlebars.registerHelper( 'sisakolom', function(array,id) {
     return add;           
 });
 		 
-var ProductView = Backbone.View.extend({
+var CategoryDetailsView = Backbone.View.extend({
 	template: Handlebars.compile(
-		'<div class="small-6 large-6 columns" id="home-product" style="background:{{home-background  this.id}};"> ' +
+		'<div class="small-6 large-6 columns" id="home-product" style="background:{{home-background  this.index }};"> ' +
 		'	<div id="image" align="center"> ' +
 		'		<img src="{{this.id_default_image}}"/> ' +
 		'	</div> ' +
 		'	<p id="product-price">&#36;{{this.price}}</p>' + 
 		'	<p id="product-name">{{this.name}}</p>' + 
-		'</div> '
+		'</div>'
 	),
 	initialize: function () {
+			
 		 this.render();
     },
 	render: function () {
@@ -72,7 +73,7 @@ var ProductView = Backbone.View.extend({
 	masking: function(){
 		console.log("pindah ke details")
 		if (!myScroll.moved){
-			app.navigate('products/' + this.model.id, { trigger: true });
+			app.navigate('CategoryDetails/' + this.model.id, { trigger: true });
 		}
 	}
 });

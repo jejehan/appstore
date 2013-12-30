@@ -5,6 +5,7 @@ var CategoryPresenter = function ( options ){
 
 CategoryPresenter.prototype.displayData = function (collection){
 	$('#scroller-left').append('<ul class="list" id="menu-left"></ul>').el;
+	$('#menu-left').append('<li class="cat-list" ><a href="#">Home</a></li>');
 	collection.each(function(item){
 		$('#menu-left').append(new CategoryView({
 			model: item.toJSON()
