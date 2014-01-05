@@ -1,0 +1,11 @@
+<div class="menu-right">
+	<div class="scroll-right">
+		<ul class="menu rad-list">
+				<li data-view="view.inner_home_widget">Home</li>
+			{{# _(model).each(function (category) { }}
+				<li data-view="view.inner_category_widget#{{ category.id }}">{{ category.name }}</li>
+			{{# }); }}
+				<li>&nbsp;</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,58 @@
+#home-product{
+	height:210px;
+}
+
+#desc-product{
+	padding:10px;
+}
+
+#desc-product h3{
+	color:white;
+	padding-bottom:10px;
+}
+
+#desc-product ul{
+	color:white;
+	list-style-type:circle;
+}
+
+#tabs-product{
+	height:40px;
+	text-align:center;
+}
+
+#info-product{
+	padding:10px;
+}
+
+#info-spesification{
+	padding:10px;
+}
+
+#product-price{
+	font-size:80%;
+	text-align:center;
+}
+
+#product-name{
+	font-size:80%;
+	text-align:center;
+}
+
+#footer{
+	text-align:center;
+}
+
+button:focus {
+    outline: none;
+}
+.row.full-width { 
+	width: 100%; max-width: 100%; 
+}
+
+.column, .columns {
+position: relative;
+padding-left: 0;
+padding-right: 0;
+float: left;
+}

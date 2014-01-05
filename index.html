@@ -1,120 +1,25 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>MyStore.com</title>
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-	
-	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="css/foundation.min.css" />
-	
-	<link rel="stylesheet" href="css/snap.css">
-	<link rel="stylesheet" href="css/ratchet.css">
-	<link rel="stylesheet" href="css/demo.css">
-	
-	<script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
-	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
-	<script type="text/javascript" src="js/lib/backbone-min.js"></script>
-	<script type="text/javascript" src="js/lib/foundation.min.js"></script>
-	<script type="text/javascript" src="js/lib/handlebars.js"></script>
-	<script type="text/javascript" src="js/lib/foundation/foundation.orbit.js"></script>
-	<script type="text/javascript" src="js/lib/foundation/foundation.section.js"></script>
-	
-	<script type="text/javascript" src="js/models/CategoryItemDetails.js"></script>
-	<script type="text/javascript" src="js/models/CategoryItem.js"></script>
-	<script type="text/javascript" src="js/models/ProductItemDetails.js"></script>
-	<script type="text/javascript" src="js/models/ProductItem.js"></script>
-	<script type="text/javascript" src="js/models/HomeSlider.js"></script>
-	
-	<script type="text/javascript" src="js/collections/CategoryDetailList.js"></script>
-	<script type="text/javascript" src="js/collections/CategoryList.js"></script>
-	<script type="text/javascript" src="js/collections/ProductDetailList.js"></script>
-	<script type="text/javascript" src="js/collections/ProductList.js"></script>
-	<script type="text/javascript" src="js/collections/HomeSliderList.js"></script>
-	
-	<script type="text/javascript" src="js/views/CategoryDetails.js"></script>
-	<script type="text/javascript" src="js/views/Category.js"></script>
-	<script type="text/javascript" src="js/views/ProductDetails.js"></script>
-	<script type="text/javascript" src="js/views/Product.js"></script>
-	<script type="text/javascript" src="js/views/HomeSlider.js"></script>
-	<script type="text/javascript" src="js/views/Home.js"></script>
-	
-	<script type="text/javascript" src="js/presenter/CategoryPresenter.js"></script>
-	<script type="text/javascript" src="js/presenter/HomeSliderPresenter.js"></script>
-	<script type="text/javascript" src="js/presenter/ProductPresenter.js"></script>
-	
-	<script type="text/javascript" src="js/app.js"></script>
-	
-	<script type="text/javascript" src="js/lib/iscroll.js"></script>
-	<script type="text/javascript" src="js/ratchet.js"></script>
-	
-	<style type="text/css">
-		.snap-drawers .list{margin: 0;}
-	
-		.welcome {
-			line-height: 1.5;
-			color: #555;
-		}
-		h2{
-			padding: 15px;
-			font-weight: normal;
-			font-size: 36px;
-		}
-	</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>Inner widgets</title>
+
+    <link rel="stylesheet" href="index.css" type="text/css"/>
+
+    <script type="text/javascript" src="js/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/backbone-min.js"></script>
+    <script type="text/javascript" src="js/rad.build.js"></script>
+
+    <script type="text/javascript" src="app/app.js"></script>
+
 </head>
 <body>
-	<div class="snap-drawers">
-		<div class="snap-drawer snap-drawer-left" id="left-drawer">
-			<div id="scroller-left">
-			</div>
-		</div>
-		<div class="snap-drawer snap-drawer-right" id="right-drawer">
-			<div class="row full-width">
-			<div class="small-12 large-12 columns" id="list">
-			<ul class="list">
-			  <li>List item 1 <span class="chevron"></span></li>
-			  <li>List item 2 <span class="chevron"></span></li>
-			  <li>List item 3 <span class="chevron"></span></li>
-			  <li>List item 4 <span class="chevron"></span></li>
-			  <li>List item 5 <span class="chevron"></span></li>
-			  <li>List item 6 <span class="chevron"></span></li>
-			  <li>List item 7 <span class="chevron"></span></li>
-			  <li>List item 8 <span class="chevron"></span></li>
-			  <li>List item 9 <span class="chevron"></span></li>
-			  <li>List item 10 <span class="chevron"></span></li>
-			  <li>List item 1 <span class="chevron"></span></li>
-			  <li>List item 12 <span class="chevron"></span></li>
-			  <li>List item 13 <span class="chevron"></span></li>
-			  <li>List item 14 <span class="chevron"></span></li>
-			  <li>List item 15 <span class="chevron"></span></li>
-			  <li>List item 16 <span class="chevron"></span></li>
-			  <li>List item 17 <span class="chevron"></span></li>
-			  <li>List item 18 <span class="chevron"></span></li>
-			  <li>List item 19 <span class="chevron"></span></li>
-			  <li>List item 20 <span class="chevron"></span></li>
-			</ul>
-			</div>
-			</div>
-		</div>
-	</div>
-	
-	<div id="content" class="snap-content">
-		<!-- Make sure all your bars are the first things in your <body> -->
-		<header class="bar-title">
-			<div id="toolbar">
-				<button class="button" id="toggle-left"></button>
-				 <h1 class="title"><a href="#">MyStore.com</a></h1> 
-				<button class="button" id="toggle-right"></button>
-            </div>
-		</header>
-	
-		<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
-		
-			<div class="content" id="wrapper">
-				<div id="scroller">
-				</div>
-			</div>
-	</div>
+<div id="screen"></div>
+<div id="overlay"></div>
 </body>
-	
-	<script type="text/javascript" src="js/snap.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
 </html>

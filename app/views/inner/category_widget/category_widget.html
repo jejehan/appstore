@@ -1,0 +1,24 @@
+<div class="page">
+    <div class="rad-header">Mystore.com</div>
+	<div class="rad-content">	
+		<div class="scroll-view">
+			<div class="row full-width" id="display-data">
+			{{# _(model).each(function (category) { }}
+				{{# if(category.price != "") { }}
+				<div class="small-6 large-4 columns" id="home-product#{{ category.id }}" style="">
+					<div id="image" align="center">
+						<img src="{{ category.id_default_image }}"/>
+					</div>
+					<p id="product-price">&#36; {{ category.price }}</p>
+					<p id="product-name">{{ category.name }}</p>
+				</div> 
+				{{# }else{ }}
+				<div class="small-12 large-12 columns" id="home-product" style="">
+					<p id="product-name">NO DATA</p>
+				</div> 
+				{{# } }}
+			{{# }); }}
+			</div>
+		</div>
+	</div>
+</div>
