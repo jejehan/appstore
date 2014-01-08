@@ -691,6 +691,7 @@ RAD.namespace('RAD.Blanks.View', Backbone.View.extend({
         if (model) {
             self.model = model;
             for (i = this.listen.length - 1; i > -1; i -=1) {
+				//console.log(self.listen[i])
                 self.listenTo(model, self.listen[i], self.render);
             }
             if (self.template && !self.renderRequest) {

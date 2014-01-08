@@ -29,6 +29,14 @@ ul {
     right: 0;
 }
 
+.scroll-product {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
 .rad-header{
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -177,7 +185,7 @@ ul {
 
 .th-content {
     position: absolute;
-    top: 40px;
+    top: 0;
     bottom: 60px;
     width: 100%;
 }

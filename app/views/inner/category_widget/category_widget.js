@@ -1,7 +1,7 @@
 RAD.views.InnerCategoryWidget = RAD.Blanks.ScrollableView.extend({
     url: 'app/views/inner/category_widget/category_widget.html',
-	 events: {
-        'tapmove #home-product': 'openProduct'
+	events: {
+        'tap #home-product': 'openProduct'
     },
 	onEndRender: function () {
         "use strict";
@@ -57,8 +57,27 @@ RAD.views.InnerCategoryWidget = RAD.Blanks.ScrollableView.extend({
             el.mScroll = null;
         }
     },
-	openProduct: function () {
-		console.log("tap here")
+	openProduct: function(e) {
+		console.log("here")
+		var container = $(".rad-content")
+		var el = container.get(0);
+		if(el && el.mScroll){
+			if(!el.mScroll.moved){
+				
+				var data_id = $(e.currentTarget).data('id')
+				var options = {
+						container_id: '.sub-content',
+						content: 'view.inner_product_widget',
+						animation: 'none',
+						extras:{
+							id: data_id
+						}
+					};
+		
+				this.publish('navigation.show', options);
+				this.publish('view.parent_widget.close', null);
+			}
+		}
 	}
 });
 
@@ -78,7 +97,10 @@ var	CategoryCollections = Backbone.Collection.extend({
 			this.id = options.id;
 		},
 		url: function() {
-			return "http://toptotoe-boutique.com/jeapi/CategoryProduct.php?cid=" + this.id;
+			//var urlNya = "http://toptotoe-boutique.com/jeapi/CategoryProduct.php?cid="
+			var urlNya 	= "http://localhost:8080/Project/makanjaapi/source/CategoryProduct.php"
+			var param	= "?cid=" + this.id
+			return urlNya + param ;
 		},
 		model: CategoryProduct,
 		comparator: function(item) {

@@ -1,14 +1,5 @@
 RAD.views.InnerProductWidget = RAD.Blanks.View.extend({
     url: 'app/views/inner/product_widget/product_widget.html',
-    //children: [
-    //    {
-    //        container_id: '.th-content',
-    //        content: "view.content_first_widget",
-	//		extras:{
-	//			id : this.extras
-	//		}
-    //    }
-    //],
 	onEndRender: function () {
         "use strict";
         var self= this
@@ -21,8 +12,6 @@ RAD.views.InnerProductWidget = RAD.Blanks.View.extend({
     },
 	onNewExtras:function (extras) {
 		this.dataModel = new productCollections([],{id:extras.id});
-		//this.changeModel(this.dataModel);
-		
 		this.dataModel.fetch({
 			success: function(collection){ 
 				console.log(collection.at(0).attributes)
@@ -55,7 +44,7 @@ RAD.views.InnerProductWidget = RAD.Blanks.View.extend({
 	createScroll: function ($html) {
         "use strict";
         var self = this,
-            element = $html.find('.scroll-view').get(0);
+            element = $html.find('.scroll-product').get(0);
 
         $html.get(0).mScroll = new window.iScroll(element, {
             onBeforeScrollStart: function (e) {
@@ -122,32 +111,3 @@ var	productCollections = Backbone.Collection.extend({
 			return response[0]
 		}
 });
-
-//data collection
-//RAD.models.Products = (function (id){
-//	"use strict";
-//	var Product,Collections ,result
-//	
-//	Product = Backbone.Model.extend({
-//		defaults: {
-//				"id": 0,
-//				"price":0,
-//				"short_description": "",
-//				"available_now":"",
-//				"id_default_image":"",
-//				"name":"Product Name",
-//		}
-//	});
-//	
-//	Collections = Backbone.Collection.extend({
-//		url: "http://toptotoe-boutique.com/jeapi/Product2.php?ProdId=" + this.extras.id,
-//		model: Product,
-//		comparator: function(item) {
-//			//sort by id
-//			return item.get('id');
-//		}
-//	})
-//	
-//	result = new Collections();
-//    return result;
-//}())
