@@ -1,4 +1,4 @@
-RAD.views.menu = RAD.Blanks.View.extend({
+RAD.view("view.menu", RAD.Blanks.View.extend({
     className: 'menu',
     url: 'app/views/menu/menu.html',
     events: {
@@ -10,12 +10,11 @@ RAD.views.menu = RAD.Blanks.View.extend({
     },
     openView: function (e){
         "use strict";
-		console.log(RAD.models.Category.models)
         var getNewView = $(e.currentTarget).data('view')
 		var rSplit = getNewView.split("#")
 		var newView = rSplit[0]
 		var categoryId = rSplit[1]
-		console.log(categoryId)
+		
         var options = {
                 container_id: '.sub-content',
                 content: newView,
@@ -35,14 +34,14 @@ RAD.views.menu = RAD.Blanks.View.extend({
 	onEndRender: function () {
         "use strict";
         var self= this
-		var container = $(".menu-right")
+		var container = $(".menu-left")
 		self.destroyScroll(container);
 		self.createScroll(container);
     },
 	createScroll: function ($html) {
         "use strict";
         var self = this,
-            element = $html.find('.scroll-right').get(0);
+            element = $html.find('.scroll-left').get(0);
 
         $html.get(0).mScroll = new window.iScroll(element, {
             onBeforeScrollStart: function (e) {
@@ -81,7 +80,7 @@ RAD.views.menu = RAD.Blanks.View.extend({
             el.mScroll = null;
         }
     }
-});
+}),false);
 
 
 

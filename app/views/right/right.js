@@ -1,25 +1,47 @@
-RAD.view("view.inner_home_widget", RAD.Blanks.View.extend({
-    url: 'app/views/inner/home_widget/home_widget.html',
-	events: {
-        'tap #home-product': 'openProduct'
+RAD.view("view.right", RAD.Blanks.View.extend({
+    className: 'menu',
+    url: 'app/views/right/right.html',
+    events: {
+        'tap li': 'openView'
     },
-	onInitialize: function () {
-		"use strict";
-		this.model = RAD.models.HomeProducts
-		this.model.fetch();
+	getPageCount: function () {
+        "use strict";
+        return RAD.models.Category.length;
+    },
+    openView: function (e){
+        "use strict";
+        var getNewView = $(e.currentTarget).data('view')
+		var rSplit = getNewView.split("#")
+		var newView = rSplit[0]
+		var categoryId = rSplit[1]
 		
+        var options = {
+                container_id: '.sub-content',
+                content: newView,
+                animation: 'none',
+				extras:{
+					id	: categoryId
+				}
+            };
+		
+        this.publish('navigation.show', options);
+        this.publish('view.parent_widget.close', null);
+    },
+	oninit: function () {
+		"use strict";
+		this.model = RAD.models.Category
 	},
 	onEndRender: function () {
         "use strict";
         var self= this
-		var container = $(".rad-content")
+		var container = $(".menu-right")
 		self.destroyScroll(container);
 		self.createScroll(container);
     },
 	createScroll: function ($html) {
         "use strict";
         var self = this,
-            element = $html.find('.scroll-view').get(0);
+            element = $html.find('.scroll-right').get(0);
 
         $html.get(0).mScroll = new window.iScroll(element, {
             onBeforeScrollStart: function (e) {
@@ -49,6 +71,7 @@ RAD.view("view.inner_home_widget", RAD.Blanks.View.extend({
             }
         });
     },
+
     destroyScroll: function ($html) {
         "use strict";
         var el = $html.get(0);
@@ -56,54 +79,34 @@ RAD.view("view.inner_home_widget", RAD.Blanks.View.extend({
             el.mScroll.destroy();
             el.mScroll = null;
         }
-    },
-	openProduct: function(e) {
-		var container = $(".rad-content")
-		var el = container.get(0);
-		if(el && el.mScroll){
-			if(!el.mScroll.moved){
-				
-				var data_id = $(e.currentTarget).data('id')
-				var options = {
-						container_id: '.sub-content',
-						content: 'view.inner_product_widget',
-						animation: 'none',
-						extras:{
-							id: data_id
-						}
-					};
-		
-				this.publish('navigation.show', options);
-				this.publish('view.parent_widget.close', null);
-			}
-		}
-	}
+    }
 }),false);
 
+
+
 //data collection
-RAD.models.HomeProducts = (function (){
+RAD.models.Category = (function (){
 	"use strict";
-	var HomeProduct,Models ,result
+	var HomeSliderItem,Models ,result
 	
-	HomeProduct = Backbone.Model.extend({
+	HomeSliderItem = Backbone.Model.extend({
 		defaults: {
-				"id": 0,
-				"id_default_image":0,
-				"id_homeslider_slides": "",
-				"name":"Product Name",
-				"price":""
+				"id_homeslider_slides": 0,
+				"position":0,
+				"image": ""
 		}
 	});
 	
 	Models = Backbone.Collection.extend({
-		url: "http://toptotoe-boutique.com/jeapi/HomeProduct.php",
-		model: HomeProduct,
+		url: "http://toptotoe-boutique.com/jeapi/Category.php",
+		model: HomeSliderItem,
 		comparator: function(item) {
 			//sort by id
-			return item.get('id');
+			return item.get('position');
 		}
 	})
 	
 	result = new Models();
+	result.fetch();
     return result;
 }())

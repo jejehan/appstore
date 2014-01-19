@@ -8,33 +8,19 @@
 
         "app/views/parent_widget/parent_widget.js",
         "app/views/menu/menu.js",
+		"app/views/right/right.js",
 		"app/views/inner/home_widget/home_widget.js",
 		"app/views/inner/category_widget/category_widget.js",
 		"app/views/inner/product_widget/product_widget.js",
-		"app/views/inner/product_widget/content-first/content-first.js",
-        "app/views/inner/product_widget/content-second/content-second.js",
-        "app/views/inner/product_widget/content-product/content-product.js",
-        "app/views/inner/product_widget/content-second/first/first.js",
-        "app/views/inner/product_widget/content-second/second/second.js",
+		"app/views/login_register/login_register.js",
+		"app/views/login_register/register/register.js",
+		"app/views/login_register/login/login.js",
+		"app/views/loading/loading.js"
     ];
 
     function onEndLoad() {
 
-        var view = window.RAD.views,
-            core = window.RAD.core,
-            views = [
-                {"view.parent_widget": view.ParentWidget},
-                {"view.menu": view.menu},
-				{"view.inner_home_widget": view.InnerHomeWidget},
-				{"view.inner_category_widget": view.InnerCategoryWidget},
-				{"view.inner_product_widget": view.InnerProductWidget},
-				{"view.content_first_widget": view.ContentFirstWidget},
-                {"view.content_second_widget": view.ContentSecondWidget},
-                {"view.content_third_widget": view.ContentThirdWidget},
-                {"view.first": view.FirstWidget},
-                {"view.second": view.SecondWidget},
-            ],
-            application = new window.RAD.application(core),
+        var application = window.RAD.application,
             coreOptions = {
                 defaultBackstack: false,
                 defaultAnimation: 'slide',
@@ -43,10 +29,7 @@
             };
 
         //initialize core by new application object
-        core.initialize(application, coreOptions);
-
-        //register views
-        core.registerAll(views);
+        window.RAD.core.initialize(application, coreOptions);
 
         //start
         application.start();

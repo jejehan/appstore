@@ -653,10 +653,10 @@ RAD.namespace('RAD.Blanks.View', Backbone.View.extend({
 
         children = _.clone(self.getChildren());
         self.children = children;
-
+		
         $.get(self.url, function (data) {
             var innerTemplate, wrapper, i, l, templArr;
-
+			
             templArr = window.$('<div></div>').html(data).find('[data-template]');
             if (templArr.length > 0) { self.innerTemplate = []; }
             for (i = 0, l = templArr.length; i < l; i += 1) {
@@ -691,7 +691,7 @@ RAD.namespace('RAD.Blanks.View', Backbone.View.extend({
         if (model) {
             self.model = model;
             for (i = this.listen.length - 1; i > -1; i -=1) {
-				//console.log(self.listen[i])
+				
                 self.listenTo(model, self.listen[i], self.render);
             }
             if (self.template && !self.renderRequest) {

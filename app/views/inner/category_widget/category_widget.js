@@ -1,4 +1,4 @@
-RAD.views.InnerCategoryWidget = RAD.Blanks.ScrollableView.extend({
+RAD.view("view.inner_category_widget",RAD.Blanks.ScrollableView.extend({
     url: 'app/views/inner/category_widget/category_widget.html',
 	events: {
         'tap #home-product': 'openProduct'
@@ -79,7 +79,7 @@ RAD.views.InnerCategoryWidget = RAD.Blanks.ScrollableView.extend({
 			}
 		}
 	}
-});
+}),false);
 
 
 var	CategoryProduct = Backbone.Model.extend({

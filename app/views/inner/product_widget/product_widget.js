@@ -1,4 +1,4 @@
-RAD.views.InnerProductWidget = RAD.Blanks.View.extend({
+RAD.view("view.inner_product_widget", RAD.Blanks.View.extend({
     url: 'app/views/inner/product_widget/product_widget.html',
 	onEndRender: function () {
         "use strict";
@@ -14,12 +14,10 @@ RAD.views.InnerProductWidget = RAD.Blanks.View.extend({
 		this.dataModel = new productCollections([],{id:extras.id});
 		this.dataModel.fetch({
 			success: function(collection){ 
-				console.log(collection.at(0).attributes)
 				this.dataModel = collection.at(0).attributes;
 			}
 		});
 		this.bindModel(this.dataModel);
-		console.log(this.dataModel)
 		return this.model
 		
 	},
@@ -82,7 +80,7 @@ RAD.views.InnerProductWidget = RAD.Blanks.View.extend({
             el.mScroll = null;
         }
     },
-});
+}),false);
 
 var	productModel = Backbone.Model.extend({
 		defaults: {
@@ -107,7 +105,6 @@ var	productCollections = Backbone.Collection.extend({
 			return item.get('id');
 		},
 		parse: function(response){
-			console.log(response[0])
 			return response[0]
 		}
 });

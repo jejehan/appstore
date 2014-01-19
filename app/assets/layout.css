@@ -14,9 +14,17 @@ ul {
 .scroll-right {
     position: absolute;
     top: 40px;
-    left: 0;
     bottom: 0;
     right: 0;
+	width: 250px;
+    height: 100%;
+}
+
+.scroll-left {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    bottom: 0;
 	width: 250px;
     height: 100%;
 }
@@ -53,6 +61,9 @@ ul {
 
 .toggle-menu {
     left: 30px;
+}
+.right-menu{
+    right: 30px;
 }
 
 .open-dialog {
@@ -148,6 +159,15 @@ ul {
     width: 250px;
     height: 100%;
     overflow: hidden;
+	visibility': 'hidden';
+}
+
+.menu-container-right {
+    width: 250px;
+    height: 100%;
+	right: 0;
+    overflow: hidden;
+	visibility': 'hidden';
 }
 
 .content-container {

@@ -1,4 +1,4 @@
-RAD.views.ParentWidget = RAD.Blanks.View.extend({
+RAD.view("view.parent_widget",  RAD.Blanks.View.extend({
     url: 'app/views/parent_widget/parent_widget.html',
     children: [
         {
@@ -8,6 +8,10 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
         {
             container_id: '.menu-container',
             content: "view.menu"
+        },
+        {
+            container_id: '.menu-container-right',
+            content: "view.right"
         }
 		
     ],
@@ -21,8 +25,8 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
         'tapclear .content-container': 'tapClear',
 
         'tap .content-overlay': 'toggleMenu',
-        'tap .toggle-menu': 'toggleMenu',
-        'tap .open-dialog': 'openDialog'
+        'tap .toggle-menu': 'menuLeft',
+        'tap .right-menu': 'menuRight'
     },
     onEndRender: function () {
         "use strict";
@@ -32,6 +36,7 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
         this.changePosition(this.contentPosition);
 
         this.menuWidth = this.$('.menu-container').width();
+		this.menuRightWidth = this.$('.menu-container-right').width();
     },
 
     changePosition: function (position) {
@@ -64,18 +69,27 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
         var self = this,
             $container = this.$content,
             eventName = 'webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd';
-
+		
         function onEnd(e) {
             if (e && e.target !== $container.get(0)) {return; }
 
             $container.removeClass('swipe-animation');
             $container.off(eventName, onEnd);
             clearTimeout($container.get(0).timeout);
-
-            if (self.contentPosition < self.menuWidth / 2) {
-                self.$overlay.css({'visibility': 'hidden'});
-            } else {
+			
+			if(self.contentPosition == 250){
+				$('.menu-container').css({'visibility': 'visible'})
+				$('.menu-container-right').css({'visibility': 'hidden'})
+			}
+				
+			if(self.contentPosition == -250){
+				$('.menu-container-right').css({'visibility': 'visible'})
+				$('.menu-container').css({'visibility': 'hidden'})
+			}
+            if (self.contentPosition == 250 || self.contentPosition == -250) {
                 self.$overlay.css({'visibility': 'visible'});
+            } else {
+                self.$overlay.css({'visibility': 'hidden'});
             }
 
             $container.get(0).timeout = null;
@@ -87,7 +101,7 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
     },
     touchBlock: function (e) {
         "use strict";
-
+		
         if (e && this.isRunning) {
             e.stopPropagation();
             e.preventDefault();
@@ -95,10 +109,11 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
     },
     tapDown: function (e) {
         "use strict";
+		
         this.startX = e.originalEvent.tapdown.clientX;
         if (this.startX < this.tapWidth) {
             this.isRunning = true;
-            this.publish("view.inner_home_widget.block", null);
+            this.publish("view.product_widget.block", null);
         }
         this.isSwipe = false;
         this.touchBlock(e);
@@ -106,9 +121,10 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
 
     tapMove: function (e) {
         "use strict";
+	
         var X = e.originalEvent.tapmove.clientX,
             delta = X - this.startX;
-		//console.log(delta)
+		
         this.isSwipe = true;
 
         if (!this.isRunning) {return; }
@@ -122,6 +138,7 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
 
     tapChancel: function (e) {
         "use strict";
+		
         var self = this;
         this.clearTimeout = setTimeout(function () {
             self.tapUp();
@@ -130,13 +147,15 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
 
     tapClear: function (e) {
         "use strict";
+		
         clearTimeout(this.clearTimeout);
     },
 
     tapUp: function (e) {
         "use strict";
+		
         var newPosition = (this.contentPosition > this.menuWidth / 2) ? this.menuWidth : 0;
-
+		
         this.touchBlock(e);
 
         if (this.isSwipe && this.isRunning) {
@@ -145,7 +164,7 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
             this.changePosition(newPosition);
         }
         this.isRunning = false;
-        this.publish("view.inner_first_widget.unblock", null);
+        this.publish("view.product_widget.unblock", null);
     },
 
     closeMenu: function () {
@@ -162,10 +181,28 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
 
     toggleMenu: function () {
         "use strict";
+		if(this.contentPosition > 0){
+			var newPosition = (this.contentPosition > this.menuWidth / 2) ? 0 : this.menuWidth;
+		}else{
+			var newPosition = (this.contentPosition < this.menuWidth / 2) ? 0 : this.menuWidth;
+		}
+		
+        this.prepareAnimation();
+		
+        this.changePosition(newPosition);
+    },
+	menuLeft: function () {
+        "use strict";
         var newPosition = (this.contentPosition > this.menuWidth / 2) ? 0 : this.menuWidth;
         this.prepareAnimation();
-		console.log((newPosition * -1))
+
         this.changePosition(newPosition);
+    },
+	menuRight: function () {
+        "use strict";
+        var newPosition = (this.contentPosition > this.menuWidth / 2) ? 0 : this.menuWidth;
+        this.prepareAnimation();
+        this.changePosition(newPosition * -1);
     },
 
     onReceiveMsg: function (channel, data) {
@@ -205,4 +242,4 @@ RAD.views.ParentWidget = RAD.Blanks.View.extend({
             };
         this.publish('navigation.dialog.show', options);
     }
-});
+}), false);
