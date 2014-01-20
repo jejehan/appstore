@@ -2,31 +2,30 @@ RAD.view("view.inner_product_widget", RAD.Blanks.View.extend({
     url: 'app/views/inner/product_widget/product_widget.html',
 	onEndRender: function () {
         "use strict";
-        var self= this
+    },
+	onStartAttach: function () {
+		var self= this
 		var container = $(".th-content")
 		self.destroyScroll(container);
 		self.createScroll(container);
-    },
+		
+	},
     events: {
         'tap .button-go-to': 'open'
     },
-	onNewExtras:function (extras) {
-		this.dataModel = new productCollections([],{id:extras.id});
-		this.dataModel.fetch({
-			success: function(collection){ 
-				this.dataModel = collection.at(0).attributes;
-			}
-		});
-		this.bindModel(this.dataModel);
-		return this.model
-		
+	
+	onNewExtras:function (data) {
+		var self = this;
+        if (!!data.model) {
+            self.changeModel(data.model);
+        }
 	},
     open: function (e) {
         "use strict";
         var $target = $(e.currentTarget),
             $lastTarget = this.$lastTarget || this.$('.rad-footer.rad-tab-bar .active'),
             options = {
-                container_id: '.th-content'
+                container_id: '.sub-content'
             },
             lastIndex = $lastTarget.data('index'),
             newIndex = $target.data('index');
@@ -36,14 +35,17 @@ RAD.view("view.inner_product_widget", RAD.Blanks.View.extend({
         $target.addClass('active');
 
         options.content = $target.data('target');
+		console.log(options.content)
         options.animation = $target.data('animation') + ((lastIndex > newIndex) ? '-out' : '-in');
-        this.publish('navigation.show', options);
+		
+		this.publish('navigation.show', options);
+		this.publish('view.inner_product_widget.close', null);
+		this.publish('view.parent_widget.close', null);
     },
 	createScroll: function ($html) {
         "use strict";
         var self = this,
             element = $html.find('.scroll-product').get(0);
-
         $html.get(0).mScroll = new window.iScroll(element, {
             onBeforeScrollStart: function (e) {
                 var target = e.target;

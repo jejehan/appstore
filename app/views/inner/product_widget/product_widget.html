@@ -1,15 +1,14 @@
 <div class="page">
     <div class="th-top rad-header">MySytore.com</div>
     <div class="th-content">
-		<div class="scroll-product">
-			{{# _(model).each(function (product) { }}
-				
+		{{ console.log(model) }}
+		<div class="scroll-product" id="wrapper">
 				<div class="row full-width">
 				<div class="row full-width">
 					<div class="small-12 large-12 columns" style="background:#FFC48C;" >
-						<div class="product-name" >{{ product.name }} </div>
-						<div class="product-short_desc" >{{ product.short_description }}</div>
-						<div class="product-price" >{{ product.price }} </div>
+						<div class="product-name" >{{ model.name }} </div>
+						<div class="product-short_desc" >{{ model.short_description }}</div>
+						<div class="product-price" >{{ model.price }} </div>
 					</div>
 				</div>
 				<div class="row full-width">
@@ -23,19 +22,20 @@
 				<div class="row full-width">
 					<div class="small-12 large-12 columns" style="background:#D1F2A5;" >
 						<div class="info" > 
-							{{ product.description }}
+							{{ model.description }}
 						</div>
 					</div>
 				</div>
 				</div>
-			{{# }); }}
 		</div>
     </div>
     <div class="th-bottom">
         <div class="rad-footer rad-tab-bar" style="height: 100%">
-            <div class="button-go-to active" data-target="view.content_first_widget" data-animation="slide" data-index="1">
+			
+            <div class="button-go-to active" data-target="view.inner_category_widget" data-animation="slide" data-index="1">
                 <span class="rad-ico rad-ico-prev"></span><span>Back</span>
             </div>
+			
 			<div class="button-go-to active" data-target="view.cart" data-product="{id:0,name:'',price:0}" data-index="1">
                 <span class="rad-ico rad-ico-prev"></span><span>Buy</span>
             </div>

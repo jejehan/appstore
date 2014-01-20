@@ -59,22 +59,40 @@ RAD.view("view.inner_home_widget", RAD.Blanks.View.extend({
     },
 	openProduct: function(e) {
 		var container = $(".rad-content")
+		var self = this;
 		var el = container.get(0);
 		if(el && el.mScroll){
 			if(!el.mScroll.moved){
+			
+			
+				self.publish('navigation.show', {
+					container_id: '.sub-content',
+					content: "view.loading",
+					animation: 'none'
+				});
+				self.publish('view.parent_widget.close', null);
 				
 				var data_id = $(e.currentTarget).data('id')
-				var options = {
-						container_id: '.sub-content',
-						content: 'view.inner_product_widget',
-						animation: 'none',
-						extras:{
-							id: data_id
-						}
-					};
-		
-				this.publish('navigation.show', options);
-				this.publish('view.parent_widget.close', null);
+				
+				var collectProduct = new productCollections([],{id:data_id})
+					
+				collectProduct.fetch({
+					success:function (collection){
+						
+						var options = {
+							container_id: '.sub-content',
+							content: 'view.inner_product_widget',
+							animation: 'none',
+							extras:{
+								model: collection.at(0)
+							}
+						};
+						
+						self.publish('navigation.show', options);
+						self.publish('view.parent_widget.close', null);
+					}
+				})
+				
 			}
 		}
 	}
@@ -106,4 +124,31 @@ RAD.models.HomeProducts = (function (){
 	
 	result = new Models();
     return result;
-}())
+}());
+
+var	productModel = Backbone.Model.extend({
+		defaults: {
+				"id": 0,
+				"price":0,
+				"short_description": "",
+				"available_now":"",
+				"id_default_image":"",
+				"name":"Product Name"
+		}
+});     
+
+var	productCollections = Backbone.Collection.extend({
+		initialize: function(models, options) {
+			this.id = options.id;
+		},
+		url: function() {
+			return "http://toptotoe-boutique.com/jeapi/Product2.php?ProdId=" + this.id;
+		},
+		model: productModel,
+		comparator: function(item) {
+			return item.get('id');
+		},
+		parse: function(response){
+			return response[0]
+		}
+});
