@@ -15,6 +15,9 @@
 		"app/views/login_register/login_register.js",
 		"app/views/login_register/register/register.js",
 		"app/views/login_register/login/login.js",
+		"app/views/keranjang_konfirmasi/keranjang_konfirmasi.js",
+		"app/views/keranjang_konfirmasi/keranjang/keranjang.js",
+		"app/views/keranjang_konfirmasi/konfirmasi/konfirmasi.js",
 		"app/views/loading/loading.js"
     ];
 

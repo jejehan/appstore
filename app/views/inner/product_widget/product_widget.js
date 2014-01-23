@@ -8,7 +8,18 @@ RAD.view("view.inner_product_widget", RAD.Blanks.View.extend({
 		var container = $(".th-content")
 		self.destroyScroll(container);
 		self.createScroll(container);
-		
+		window.addEventListener('load', self.createScroll(container), false);
+		$(document).foundation({
+			orbit: {
+				animation: 'slide',
+				timer_speed: 1000,
+				pause_on_hover: true,
+				animation_speed: 500,
+				navigation_arrows: true,
+				bullets: false,
+				variable_height:true
+			}
+		});
 	},
     events: {
         'tap .button-go-to': 'open'
@@ -17,11 +28,13 @@ RAD.view("view.inner_product_widget", RAD.Blanks.View.extend({
 	onNewExtras:function (data) {
 		var self = this;
         if (!!data.model) {
+			data.model.set({view:data.view})
             self.changeModel(data.model);
         }
 	},
     open: function (e) {
         "use strict";
+		
         var $target = $(e.currentTarget),
             $lastTarget = this.$lastTarget || this.$('.rad-footer.rad-tab-bar .active'),
             options = {
@@ -92,6 +105,7 @@ var	productModel = Backbone.Model.extend({
 				"available_now":"",
 				"id_default_image":"",
 				"name":"Product Name",
+				"image":"",
 		}
 });     
 

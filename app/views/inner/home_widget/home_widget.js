@@ -84,7 +84,8 @@ RAD.view("view.inner_home_widget", RAD.Blanks.View.extend({
 							content: 'view.inner_product_widget',
 							animation: 'none',
 							extras:{
-								model: collection.at(0)
+								model: collection.at(0),
+								view: "view.inner_home_widget"
 							}
 						};
 						

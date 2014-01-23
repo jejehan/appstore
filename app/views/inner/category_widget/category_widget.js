@@ -13,10 +13,7 @@ RAD.view("view.inner_category_widget",RAD.Blanks.View.extend({
         "use strict";
     },
 	onNewExtras: function(extras){
-		//this.catId = extras.id
-		//this.model = new CategoryCollections([],{id:this.catId});
 		this.bindModel(extras.model);
-		//this.model.fetch();
 	},
 	createScroll: function ($html) {
         "use strict";
@@ -85,7 +82,8 @@ RAD.view("view.inner_category_widget",RAD.Blanks.View.extend({
 							content: 'view.inner_product_widget',
 							animation: 'none',
 							extras:{
-								model: collection.at(0)
+								model: collection.at(0),
+								view: "view.inner_category_widget"
 							}
 						};
 						self.publish('navigation.show', options);

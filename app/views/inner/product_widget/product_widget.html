@@ -1,14 +1,27 @@
 <div class="page">
     <div class="th-top rad-header">MySytore.com</div>
     <div class="th-content">
-		{{ console.log(model) }}
 		<div class="scroll-product" id="wrapper">
 				<div class="row full-width">
 				<div class="row full-width">
 					<div class="small-12 large-12 columns" style="background:#FFC48C;" >
-						<div class="product-name" >{{ model.name }} </div>
-						<div class="product-short_desc" >{{ model.short_description }}</div>
-						<div class="product-price" >{{ model.price }} </div>
+						<ul class="example-orbit" data-orbit style="height: 300px;align:center; ">
+							{{# _(model.image).each(function (images) { }}
+								<li>
+									<img src="{{ images.images }}" alt="{{ model.name }}" />
+								</li>
+							{{# }); }}					
+						</ul>
+					</div>
+				</div>
+				<div class="row full-width">
+					<div class="small-12 large-12 columns" style="background:#FFC48C;" >
+						<ul class="pricing-table" style="background:#FFC48C;">
+							<li class="title" style="background:#FFC48C;">{{ model.name }}</li>
+							<li class="price" style="background:#FFC48C;">Rp. {{ model.price }}</li>
+							<li class="bullet-item" style="background:#FFC48C;">{{ model.short_description }}</li>
+							<li class="cta-button" style="background:#FFC48C;"><a class="button" href="#">Buy Now</a></li>
+						</ul>
 					</div>
 				</div>
 				<div class="row full-width">
@@ -32,7 +45,7 @@
     <div class="th-bottom">
         <div class="rad-footer rad-tab-bar" style="height: 100%">
 			
-            <div class="button-go-to active" data-target="view.inner_category_widget" data-animation="slide" data-index="1">
+            <div class="button-go-to active" data-target="{{ model.view }}" data-animation="slide" data-index="1">
                 <span class="rad-ico rad-ico-prev"></span><span>Back</span>
             </div>
 			

@@ -1,23 +1,20 @@
-RAD.view("view.login_register", RAD.Blanks.ScrollableView.extend({
-	url:'app/views/login_register/login_register.html',
+RAD.view("view.keranjang_konfirmasi", RAD.Blanks.ScrollableView.extend({
+	url:'app/views/keranjang_konfirmasi/keranjang_konfirmasi.html',
 	children:[{
-		container_id:'.register_login_content',
-		content:"view.register"
+		container_id:'.keranjang_konfirmasi_content',
+		content:"view.keranjang"
 	}],
 	events:{
 		'tap .tab_nav_login_register' : 'changeContent'
 	},
 	changeContent : function (e) {
-		console.log("here")
 		var View = $(e.currentTarget).data('target')
-		
         var options = {
-                container_id: '.register_login_content',
+                container_id: '.keranjang_konfirmasi_content',
                 content: View,
                 animation: 'none'
             };
 		
         this.publish('navigation.show', options);
-        //this.publish(View, null);
 	}
 }),false)
