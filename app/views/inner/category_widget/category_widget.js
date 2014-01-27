@@ -68,7 +68,7 @@ RAD.view("view.inner_category_widget",RAD.Blanks.View.extend({
 				self.publish('navigation.show', {
 					container_id: '.sub-content',
 					content: "view.loading",
-					animation: 'none'
+					animation: 'slide'
 				});
 				self.publish('view.parent_widget.close', null);
 				

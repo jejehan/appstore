@@ -22,7 +22,8 @@ RAD.view("view.inner_product_widget", RAD.Blanks.View.extend({
 		});
 	},
     events: {
-        'tap .button-go-to': 'open'
+        'tap .button-go-to': 'open',
+		'click .button': 'addToCart'
     },
 	
 	onNewExtras:function (data) {
@@ -48,13 +49,34 @@ RAD.view("view.inner_product_widget", RAD.Blanks.View.extend({
         $target.addClass('active');
 
         options.content = $target.data('target');
-		console.log(options.content)
         options.animation = $target.data('animation') + ((lastIndex > newIndex) ? '-out' : '-in');
 		
 		this.publish('navigation.show', options);
 		this.publish('view.inner_product_widget.close', null);
 		this.publish('view.parent_widget.close', null);
     },
+	addToCart: function(e){
+		 var self = this,
+			 oProduct = self.model.attributes,
+			 oId = oProduct.id,
+			 oName = oProduct.name,
+		     oPrice = oProduct.price,
+			 oDetail = {
+							"name":oName,
+							"price":oPrice,
+							"id":oId,
+							"qty":1
+						}
+			 
+			 cart.addToCart(oDetail);
+			 
+			 self.publish('navigation.show', {
+					container_id: '.sub-content',
+					content: "view.keranjang_konfirmasi",
+					animation: 'slide'
+				});
+			self.publish('view.parent_widget.close', null);
+	},
 	createScroll: function ($html) {
         "use strict";
         var self = this,

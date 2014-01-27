@@ -1,27 +1,33 @@
-// Cart User
-RAD.model('Cart', Backbone.Model.extend({
-	urlRoot:'http://localhost:8080/Project/appstoremodified/api/user',
-    defaults: {
-        "name": "", 
-        "email": "",
-        "password": "",
-        "address": "",
-        "mobileno": 0,
-        "state": 0,
-        "propinsi": ""
-    }
-}), false);
-
 RAD.view("view.keranjang", RAD.Blanks.ScrollableView.extend({
 	url:'app/views/keranjang_konfirmasi/keranjang/keranjang.html',
 	events:{
-		'click .keranjang' : 'addUser'
+		'click .keranjang' : 'addUser',
+		'click .qtyplus' : 'qtyPlus',
+		'click .qtyminus' : 'qtyMinus',
 	},
-	model : new RAD.models.Cart(),
+	onStartAttach:function(){
+		this.bindModel(this.model);
+	},
+	model : cart,
 	cekOut : function (event) {
 		
 	},
-	addQty : function (event) {
+	qtyPlus : function (e) {
+		var $id = $(e.currentTarget),
+			id = $id.data('id'),
+			newQty = cart.plusQty(id),
+			oTotalPrice= cart.totalPrice()
 		
+		$(".quantity" + id).text(newQty);
+		$(".totalPrice").text(numberFormater(oTotalPrice));
+	},
+	qtyMinus : function (e) {
+		var $id = $(e.currentTarget),
+			id = $id.data('id'),
+			newQty = cart.minusQty(id),
+			oTotalPrice= cart.totalPrice()
+		
+		$(".quantity" + id).text(newQty);
+		$(".totalPrice").text(numberFormater(oTotalPrice));
 	},
 }),false)

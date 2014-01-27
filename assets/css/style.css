@@ -283,16 +283,13 @@ li.rad-ico:before,
     margin: -4px 10px 0 0;
 }
 
-input[type=radio],
 input[type=checkbox] {
     position: absolute;
-    opacity: 0;
     width: 20px;
     height: 20px;
 
 }
 
-input[type=radio]+span,
 input[type=checkbox]+span {
     display: inline-block;
     height: 15px;
@@ -306,13 +303,6 @@ input[type=checkbox]:checked+span {
     background: url("../image/sprite.png") -61px -128px;
 }
 
-input[type=radio]+span {
-    background-position: -0px -128px;
-}
-
-input[type=radio]:checked+span {
-    background-position: -20px -128px;
-}
 
 .rad-acc-header + .rad-acc-content {
     height: 0;
@@ -430,6 +420,16 @@ input[type=radio]:checked+span {
 }
 
 
-
+.radio-pembayaran {
+    -webkit-backface-visibility: hidden;    
+    width:25px;
+}
+.radioWrap{
+ background-color: orange;
+ padding: 4px 3px 1px 4px;
+ border-radius: 10px;
+ -webkit-backface-visibility: visible;
+ background:none;
+ }
 
 

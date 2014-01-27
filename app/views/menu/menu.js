@@ -39,7 +39,7 @@ RAD.view("view.menu", RAD.Blanks.View.extend({
 						var options = {
 							container_id: '.sub-content',
 							content: newView,
-							animation: 'none',
+							animation: 'slide',
 							extras:{
 								model : collection
 							}

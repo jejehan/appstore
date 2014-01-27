@@ -5,7 +5,7 @@
 				<div class="row full-width">
 				<div class="row full-width">
 					<div class="small-12 large-12 columns" style="background:#FFC48C;" >
-						<ul class="example-orbit" data-orbit style="height: 300px;align:center; ">
+						<ul class="example-orbit" data-orbit style="height: 100px;align:center; ">
 							{{# _(model.image).each(function (images) { }}
 								<li>
 									<img src="{{ images.images }}" alt="{{ model.name }}" />
@@ -20,7 +20,9 @@
 							<li class="title" style="background:#FFC48C;">{{ model.name }}</li>
 							<li class="price" style="background:#FFC48C;">Rp. {{ model.price }}</li>
 							<li class="bullet-item" style="background:#FFC48C;">{{ model.short_description }}</li>
-							<li class="cta-button" style="background:#FFC48C;"><a class="button" href="#">Buy Now</a></li>
+							<li class="cta-button" style="background:#FFC48C;">
+								<a class="button" href="#" >Buy Now</a>
+							</li>
 						</ul>
 					</div>
 				</div>

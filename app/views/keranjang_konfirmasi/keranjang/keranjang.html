@@ -1,7 +1,101 @@
-<div class="row">
+<div class="row full-width">
 	<div class="small-12">
-		
+		<table width="100%">
+			{{ console.log(model) }}
+			<tbody>
+				{{#  totalPrice = 0 }}
+				{{# _(model.items).each(function (product) { }}
+				{{# totalPrice = totalPrice + (product.price * product.qty) }}
+				<tr>
+					<td style="background-color:orange; font-color=white; ">{{ product.name }}</td>
+					<td style="background-color:white; font-color=white;" width="2"> &nbsp </td>
+					<td style="background-color:orange; font-color=white; ">Rp. {{ numberFormater(product.price) }}</td>
+					<td style="background-color:white; font-color=white; " width="2"> &nbsp </td>
+					<td style="background-color:orange; font-color=white; "><span class="quantity{{ product.id }}">{{ product.qty }}</span></td>
+					<td style="background-color:white; font-color=white; " width="2"> &nbsp </td>
+					<td style="background-color:orange; font-color=white; " ><input type='button' value='+' class='qtyplus' data-id='{{ product.id }}' style="background-color:orange;"/></td>
+					<td style="background-color:white; font-color=white; " width="2"> &nbsp </td>
+					<td style="background-color:orange; font-color=white; " ><input type='button' value='-' class='qtyminus' data-id='{{ product.id }}' style="background-color:orange;"/></td>
+				</tr>
+				<tr>
+					<td colspan="9" align="center">&nbsp;</td>
+				</tr>
+				{{# }); }}
+				
+				{{# if(model.items.length==0){ }}
+				<tr>
+					<td colspan="9" align="center">NO DATA</td>
+				</tr>
+				{{# }else{ }}
+				<tr>
+					<td colspan="5"></td>
+					<td colspan="2">HARGA PRODUK:</td>
+					<td>Rp.</td>
+					<td><span class="totalPrice">{{ numberFormater(totalPrice) }}</span></td>
+				</tr>
+				<tr>
+					<td colspan="5"></td>
+					<td colspan="2">ONGKOS KIRIM:</td>
+					<td>Rp.</td>
+					<td><span class="ongkir">0</span></td>
+				</tr>
+				<tr>
+					<td colspan="5"></td>
+					<td colspan="2">TOTAL</td>
+					<td>Rp.</td>
+					<td><span class="totalPricePlus">0</span></td>
+				</tr>
+				{{# } }}
+			</tbody>
+		</table>
+	</div>
+	<div class="small-12 large-12 columns">
+		<p>PILIH METODE PEMBAYARAN</P>
+		<div class="small-12 columns">
+			<div class="small-1 large-1 columns">
+				<input type="radio" class="radioWrap" name="input" id="input1" />
+			</div>
+			<div class="small-11 large-11 columns">
+				<p> PENGAMBILAN DI TOKO </p>
+			</div>
+		</div>
+		<div class="small-12">
+			<div class="small-1 large-1 columns" >
+				<input type="radio" class="radioWrap" name="input" id="input1" />
+			</div>
+			<div class="small-11 large-11 columns">
+				<p> COD (BAYAR DITEMPAT) </p>
+			</div>
+			
+		</div>
+		<div class="small-12">
+			<div class="small-1 large-1 columns" >
+				<input type="radio" class="radioWrap" name="input" id="input1" />
+			</div>
+			<div class="small-11 large-11 columns">
+				<p> MAKANJA CARRIER </p>
+			</div>
+			
+		</div>
+	</div>
+	<div class="small-12 large-12 columns">
+		<p>PERSYARATAN PENGIRIMAN</P>
+		<div class="small-12 columns">
+			<div class="small-1 large-1 columns">
+				<input type="radio" class="radioWrap" name="syarat" id="syarat" />
+			</div>
+			<div class="small-11 large-11 columns">
+				<p> SAYA SETUJU DENGAN PERSYARATAN DAN KETENTUAN </p>
+				<p> YANG BERLAKU DAN MEMATUHI TANPA SYARAT </p>
+			</div>
+		</div>
+	</div>
+	<div class="small-12 large-12 columns">
+		<p>PESAN</P>
+		<div class="small-12 columns">
+			<textarea style="color: white; background-color: orange"></textarea>
+		</div>
 	</div>
 </div>
-<button class="button register">Register</button>
+
 

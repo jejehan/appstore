@@ -3,8 +3,11 @@
 
     var scripts = [
         "js/iscroll-lite.js",
-
+		
+		"app/function.js",
+		
         "app/application/application.js",
+		"app/models/model.js",
 
         "app/views/parent_widget/parent_widget.js",
         "app/views/menu/menu.js",
