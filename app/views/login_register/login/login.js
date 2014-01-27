@@ -18,7 +18,7 @@ RAD.view("view.login", RAD.Blanks.ScrollableView.extend({
 			data: formValues,
 			dataType: "JSON",
 			success: function (data) {
-                console.log(["Login request details: ", data]);
+                console.log(data);
                
                 if(data.error) {  //kalo ada error
 				   alert(data.error.text);
