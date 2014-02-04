@@ -3,10 +3,13 @@ RAD.view("view.right", RAD.Blanks.View.extend({
     url: 'app/views/right/right.html',
     events: {
         'tap li': 'openView'
-    },onInitialize: function () {
+    },
+	model:userAuth ,
+	onInitialize: function () {
 		"use strict";
-		this.model = userAuth
 		this.model.fetch();
+		this.bindModel(this.model);
+		
 	},
     openView: function (e){
         "use strict";

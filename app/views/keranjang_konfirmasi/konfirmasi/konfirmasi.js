@@ -3,7 +3,6 @@ RAD.view("view.konfirmasi", RAD.Blanks.ScrollableView.extend({
 	events:{
 		'click .register' : 'addUser'
 	},
-	model : new RAD.models.User(),
 	addUser : function (event) {
 
 	}

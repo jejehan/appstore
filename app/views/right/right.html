@@ -1,12 +1,15 @@
 <div class="menu-right">
 	<div class="scroll-right">
 		<ul class="menu rad-list">
-				
-			{{# if(model[0].isLogin == 1) { }}
-				<li data-view="view.login_register">DAFTAR / MASUK</li>
-			{{# }else{ }}
-				<li data-view="view.login_register">MY ACCOUNT</li>
+		
+			{{# if(model.length > 0) { }}	
+				{{# if(model[0].isLogin == 1) { }}
+					<li data-view="view.login_register">DAFTAR / MASUK</li>
+				{{# }else{ }}
+					<li data-view="view.login_register">MY ACCOUNT</li>
+				{{# } }}
 			{{# } }}
+
 				<li data-view="view.promo">PROMO</li>
 				<li data-view="view.keranjang_konfirmasi">KERANJANG</li>
 				<li>SOSIAL MEDIA
