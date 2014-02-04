@@ -9,6 +9,28 @@
     <title>myappstore.com</title>
 
     <link rel="stylesheet" href="index.css" type="text/css"/>
+    <script type="text/javascript" charset="utf-8">
+	function onLoad(){
+        document.addEventListener('deviceready', function() {
+    		document.addEventListener("backbutton", ShowExitDialog, false);
+		}, false);
+    }
+	
+	function ShowExitDialog() {
+		navigator.notification.confirm(
+			("Apakah anda yakin ingin keluar ?"),
+			alertexit,
+			'Exit Application',
+			'YA,TIDAK'
+		);
+	}
+	
+	function alertexit(button){
+		if(button=="1" || button==1){
+			device.exitApp();
+		}
+	}
+	</script>	
 
     <script type="text/javascript" src="js/jquery-2.0.2.min.js"></script>
     <script type="text/javascript" src="js/underscore-min.js"></script>
@@ -16,11 +38,10 @@
     <script type="text/javascript" src="js/rad.build.js"></script>
 	<script type="text/javascript" src="js/foundation.js"></script>
     <script type="text/javascript" src="js/foundation.orbit.js"></script>
-
     <script type="text/javascript" src="app/app.js"></script>
 
 </head>
-<body>
+<body onLoad="onLoad()">
 <div id="screen"></div>
 <div id="overlay"></div>
 </body>

@@ -56,6 +56,8 @@ RAD.view("view.inner_product_widget", RAD.Blanks.View.extend({
 		this.publish('view.parent_widget.close', null);
     },
 	addToCart: function(e){
+		e.preventDefault();
+		
 		 var self = this,
 			 oProduct = self.model.attributes,
 			 oId = oProduct.id,

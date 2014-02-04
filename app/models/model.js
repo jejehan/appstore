@@ -84,10 +84,11 @@ var cart = new cartModel();
 var userAuthLog = Backbone.Model.extend({
 	url: "http://localhost:8080/Project/appstore/api/auth",
 	defaults:{
-		"user":"",
-		"password":"",
-		"isLogin":0,
-		"mError":""
+		"id":"",
+		"firstname":"",
+		"lastname":"",
+		"email":"",
+		"isLogin":0
 	}
 });
 

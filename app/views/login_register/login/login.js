@@ -3,12 +3,11 @@ RAD.view("view.login", RAD.Blanks.ScrollableView.extend({
 	events:{
 		'click .login' : 'toAuth'
 	},
-	model: new userAuthLog(),
 	toAuth : function (event) {
 		var self = this,
-			url ="http://localhost:8080/Project/appstore/api/auth",
+			url ="http://localhost:8080/Project/appstore/api/login",
 			formValues = {
-				email: $('input[name="login"]').val(),
+				email: $('input[name="email"]').val(),
 				password: $('input[name="password"]').val()
 			};
 			
@@ -24,7 +23,7 @@ RAD.view("view.login", RAD.Blanks.ScrollableView.extend({
 				   alert(data.error.text);
                 }
                 else { //kalo berhasil
-				   alert("Hallo" + data.username);
+				   alert("Hallo " + data.firstname);
                 }
             }
 		});

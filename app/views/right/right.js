@@ -3,11 +3,11 @@ RAD.view("view.right", RAD.Blanks.View.extend({
     url: 'app/views/right/right.html',
     events: {
         'tap li': 'openView'
-    },
-	getPageCount: function () {
-        "use strict";
-        return RAD.models.Category.length;
-    },
+    },onInitialize: function () {
+		"use strict";
+		this.model = userAuth
+		this.model.fetch();
+	},
     openView: function (e){
         "use strict";
         var getNewView = $(e.currentTarget).data('view')
@@ -27,16 +27,13 @@ RAD.view("view.right", RAD.Blanks.View.extend({
         this.publish('navigation.show', options);
         this.publish('view.parent_widget.close', null);
     },
-	oninit: function () {
-		"use strict";
-		this.model = RAD.models.Category
-	},
 	onEndRender: function () {
         "use strict";
         var self= this
 		var container = $(".menu-right")
 		self.destroyScroll(container);
 		self.createScroll(container);
+
     },
 	createScroll: function ($html) {
         "use strict";
@@ -81,32 +78,3 @@ RAD.view("view.right", RAD.Blanks.View.extend({
         }
     }
 }),false);
-
-
-
-//data collection
-RAD.models.Category = (function (){
-	"use strict";
-	var HomeSliderItem,Models ,result
-	
-	HomeSliderItem = Backbone.Model.extend({
-		defaults: {
-				"id_homeslider_slides": 0,
-				"position":0,
-				"image": ""
-		}
-	});
-	
-	Models = Backbone.Collection.extend({
-		url: "http://toptotoe-boutique.com/jeapi/Category.php",
-		model: HomeSliderItem,
-		comparator: function(item) {
-			//sort by id
-			return item.get('position');
-		}
-	})
-	
-	result = new Models();
-	result.fetch();
-    return result;
-}())
